@@ -1,0 +1,16 @@
+footer{
+    background: #001228;
+    height: 150px;
+    padding-top: 50px;
+    ul{
+        display: flex;
+    }
+    .social-icons li a {
+        color: #bccbde;
+        padding: 0 20px;
+    }
+    .copyright p {
+        font-size: 14px;
+        color: #fff;
+    }
+}

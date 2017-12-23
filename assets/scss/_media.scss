@@ -1,0 +1,45 @@
+.img-md{
+    overflow: hidden;
+    >img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+.img-res-w{
+    width: 100%;
+    height: auto;
+}
+
+.img-res-h{
+    width: auto;
+    height: 100%;
+}
+
+@media only screen and (min-width: 62em) {
+    .img-md {
+        height: 152px;
+    }
+}
+
+@media only screen and (min-width: 75em) {
+    .img-md {
+        height: 192px;
+    }
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.text-lg{
+    font-size: 1.2em;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-primary-color{
+    color: $color-primary;
+}

@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(../fonts/OpenSans-Regular.ttf) format('ttf');
+  }
+$font-family:'Open Sans', sans-serif;
+
+$color-primary:#002a5c;
+$color-secondary:#33a7de;
+$color-tertiary:#001e42;
+
+$header-bg:$color-primary;
+$header-color:#fff;
+
+$navbar-bg:$color-tertiary;
+$navbar-item-bg-hover:$color-secondary;
+$navbar-item-color:#fff;
+$navbar-item-border-color:$color-primary;
+$navbar-item-border-size:2px;
+
+$post-hover-bg:$color-primary;
+$post-caption-bg:$color-tertiary;
+$post-caption-color:#fff;
+$post-caption-hover-bg:$color-secondary;
+
+$text-color:#485667;
+
+$btn-primary-color:#fff;
+$btn-primary-bg:$color-tertiary;
+$btn-primary-bg-hover:$color-secondary;
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 1rem !default;
+$grid-outer-margin: 2rem !default;
+$grid-breakpoints: sm 48em 46rem,
+md 62em 61rem,
+lg 75em 71rem !default;
+$grid-max-width-lg: 1200px !default;
+$grid-max-width-md: 972px !default;
+$gutter-width: $grid-gutter-width * .5 * -1;
+$half-gutter-width: $grid-gutter-width * .5;
+
+.bg-secondary{
+    background-color: $color-secondary;
+}

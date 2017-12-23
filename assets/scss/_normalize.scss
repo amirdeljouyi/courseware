@@ -1,0 +1,42 @@
+body{
+    margin: 0px;
+    font-family: $font-family;
+}
+a{
+    color: $color-secondary;
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+    padding: 0px;
+}
+p ul, body ul, p ol, body ol {
+    line-height: 26px;
+}
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+figure{
+    margin: 0px;
+}
+p img{
+    max-width: 100%;
+    height: auto;
+}
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.clearfix:before{
+    display: table;
+    content: " ";
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
