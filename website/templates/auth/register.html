@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block content %}
+<div class="container-row">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <section class="pdg-b-none container-section container-section__primary">
+                <h2 class="mgn-b-4">Register</h2>
+                <form class="" action="/auth/register" method="post">
+                    <input name="firstname" type="text" placeholder="First name">
+                    <input name="lastname" type="text" placeholder="Last name">
+                    <input name="username" type="text" placeholder="Username">
+                    <input name="password" type="password" placeholder="Password">
+                    <input name="confirm_password" type="password" placeholder="Confirm Password">
+                    <div class="text-lg text-primary-color mgn-b-2">
+                            <span>User is</span>
+                            <select name="authority">
+                              <option value="professor">PROFESSOR</option>
+                              <option value="student">STUDENT</option>
+                            </select>
+                          </div>
+                    <button class="btn primary center" type="submit">Register</button>
+                </form>
+            </section>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-8">
+            <div class="row banner fit-height">
+                <div class="gradient">
+                    <img class="img-res-h" src="../static/img/04-04-2017-Future-Students2_0.jpg">
+                </div>
+                <div class="caption">
+                    <div class="wrapper-lg">
+                        <div class="row mgn-b-2">
+                            <h1>Join Us</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

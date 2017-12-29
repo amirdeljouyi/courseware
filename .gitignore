@@ -1,7 +1,11 @@
 ######################
 # Project Specific
 ######################
-/website
+/__pycache__
+/website/__pycache__
+/website/mod_auth/__pycache__
+/website/mod_news/__pycache__
+/website/mod_course/__pycache__
 
 ######################
 # Node

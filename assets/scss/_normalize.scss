@@ -24,6 +24,9 @@ p img{
     max-width: 100%;
     height: auto;
 }
+img{
+    border: 0;
+}
 :after, :before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

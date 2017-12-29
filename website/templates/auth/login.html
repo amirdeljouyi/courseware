@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block content %}
+<div class="container-row">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <section class="container-section container-section__primary">
+                <h2 class="mgn-b-6">Login</h2>
+                <form class="" action="/auth/login" method="post">
+                    <input name="username" class="" type="text" placeholder="Username">
+                    <input name="password" class="" type="password" placeholder="password">
+                    <button class="btn primary center" type="submit">Login</button>
+                </form>
+                <p class="text-center">Don't have an account? &nbsp;<a href="/auth/register">Sign up</a></p>
+            </section>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-8">
+            <div class="row banner fit-height">
+                <div class="gradient">
+                    <img class="img-res-h" src="../static/img/2017-05-09 _Alumni_1b.jpg">
+                </div>
+                <div class="caption">
+                    <div class="wrapper-lg">
+                        <div class="row mgn-b-2">
+                            <h1>Login to University of Guilan</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

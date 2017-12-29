@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block content %}
+<div class="banner">
+    <div class="gradient darker">
+        <img class="img-res-w blur" src="../static/img/academics_culinaria.jpg">
+    </div>
+    <div class="caption caption-image">
+        <img src="../static/img/Title_Academics.png">
+    </div>
+</div>
+<div class="container-fluid stripe-container">
+    <img class="stripe" src="../static/img/block_background.jpg">
+
+    <section class="stripe-content wrapper-md">
+        <div class="row">
+            {% for course in courses %}
+            <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="card card-text vertically">
+                    <a href="{{ url_for('course.showCourse', courseid=course.id)}}">
+                        <h4>
+                            <span class="capitalize">{{course.title}}</span>
+                        </h4>
+                    </a>
+                    <p>{{course.about}}</p>
+                    <p class="corner">
+                        <span class="capitalize">{{course.degree}}</span>
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

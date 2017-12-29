@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block subnav %} {% if current_user.is_authenticated %}
+<nav class="subnav">
+    <ul class="subnav-wrapper container container-fluid">
+        <li class="subnav-item active">
+            <a href="/news">All News</a>
+        </li>
+        <li class="subnav-item">
+            <a href="/news/add">Add News</a>
+        </li>
+    </ul>
+</nav>
+{% endif %} {% endblock %} {% block content %}
+<div class="{{'mgn-subnav' if current_user.is_authenticated }} container-fluid">
+    <div class="row">
+        <div class="container container-fluid text-center">
+            <p>Categories :</p>
+            <p>
+                {% for category in categories %}
+                <a href="{{ url_for('news.showCategory', categoryid=category.id)}}">
+                    <span class="badge {{'active' if pageName==category.name }}">{{category.name}}</span>
+                </a>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <section class="container container-section container-section__primary">
+            <h2><span class="capitalize">{{pageName}}</span> News</h2>
+            <div class="posts">
+                {% for post in posts %}
+
+                <figure class="post">
+                    <a class="post-link" href="{{ url_for('news.showPost', postid=post.id)}}"></a>
+                    <img src="{{url_for('static', filename='img/'+post.img_url)}}">
+                    <figcaption>
+                        <h4 class="blog-post-title"> {{ post.title }}</h2>
+                            <p>{{post.content_mini}}</p>
+                    </figcaption>
+                </figure>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <nav class="row center-xs mgn-b-2">
+        <a class="" href="#">Older</a>
+        &nbsp;|&nbsp;
+        <a class="" href="#">Newer</a>
+    </nav>
+
+</div>
+{% endblock %}

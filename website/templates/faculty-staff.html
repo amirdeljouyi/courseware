@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %}
+<div class="banner">
+    <div class="gradient darker">
+        <img class="img-res-w" src="../static/img/cover-faculty-staff-group-3.jpg">
+    </div>
+    <div class="caption">
+        <div class="wrapper-lg">
+            <div class="row mgn-b-6">
+                <h1>faculty & staff</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid stripe-container">
+    <img class="stripe" src="../static/img/block_background.jpg">
+
+    <section class="wrapper-md stripe-content">
+        <div class="row">
+            {% for professor in professors %}
+            <figure class="col-xs-12 col-sm-6 card horizontally">
+                {% if professor.user.img_url is string %}
+                <img class="circle md" src="{{url_for('static', filename='img/'+professor.user.img_url)}}">
+                {% endif %}
+                <figcaption>
+                    <a href="{{ url_for('showUser', userid=professor.user.id)}}">
+                        <span class="capitalize">{{professor.user.first_name}}</span>&nbsp;
+                        <span class="capitalize">{{professor.user.last_name}}</span>
+                    </a>
+                    <p>Level : {{professor.level}}</p>
+                    <p>Field of study :
+                        <span class="capitalize">{{professor.field_of_study}}</span>
+                    </p>
+                    <p>Degree :
+                        <span class="capitalize">{{professor.degree}}</span>
+                    </p>
+                </figcaption>
+            </figure>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

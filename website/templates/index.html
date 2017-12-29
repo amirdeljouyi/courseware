@@ -1,0 +1,103 @@
+{% extends "base.html" %} {% block content %}
+<div class="slideshow">
+  <div class="carousel">
+    <div class="carousel__slide fit-height">
+      <img src="static/img/juan-ramos-97386.jpg">
+      <div class="text">
+        <h1>Enrich your experience while you're at U of G!</h1>
+        <h3>We are here to help you succeed and pursue opportunities that interest you. Connect with other students, navigate
+          your academic pursuits, work on cool projects, start a club, and balance your studies with your social life.</h3>
+      </div>
+    </div>
+    <div class="carousel__slide fit-height">
+      <img src="static/img/martins-zemlickis-57243.jpg">
+      <div class="text">
+        <h1>From running to stargazing: U of G students talk science </h1>
+      </div>
+    </div>
+    <div class="carousel__slide fit-height">
+      <img src="static/img/Shahrdari-1.jpg">
+      <div class="text">
+        <h1>City Of Guilan</h1>
+        <h3>Tour reveals new side of Guilan</h3>
+      </div>
+    </div>
+    <div class="carousel__slide fit-height">
+      <img src="static/img/photo-1449247526693-aa049327be54.jpg">
+      <div class="text">
+        <h1>What exactly do you think is involved in blaming someone?</h3>
+          <h3>Read more sample questions in our guide to interviews for undergraduate courses (this question is in Philosophy)</h5>
+      </div>
+    </div>
+  </div>
+  <div class="slideshow__next"></div>
+  <div class="slideshow__prev"></div>
+</div>
+
+<div class="container-section container-section__secondary">
+  <h2 class="text-center">Life at the Academy</h2>
+  <div class="wrapper-md">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="img-md">
+          <img src="static/img/life_Clubs&Organizations-042713-01.jpg">
+        </div>
+        <p class="text-center">
+          <a href="#">Clubs & Organizations</a>
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <div class="img-md">
+          <img src="static/img/life_CityLife-060713-091.jpg">
+        </div>
+        <p class="text-center">
+          <a href="#">City Life</a>
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <div class="img-md">
+          <img src="static/img/steven-welch-124749.jpg">
+        </div>
+        <p class="text-center">
+          <a href="#">Athletics</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <section class="container-section container-section__primary">
+      <h2>Latest News</h2>
+      <div class="posts">
+        {% for post in posts %}
+        <!-- <div class="col-xs-12 col-sm-6 col-md-3"> -->
+
+        <figure class="post">
+          <a class="post-link" href="{{ url_for('news.showPost', postid=post.id)}}"></a>
+          <img src="./static/img/{{post.img_url}}">
+          <figcaption>
+            <h4 class="blog-post-title"> {{ post.title }}</h2>
+              <p>{{post.content_mini}}</p>
+              <!-- <p class="blog-post-meta">{{ post.date }} by
+                    <a href="#"> {{ post.author }}</a>
+                  </p> -->
+
+          </figcaption>
+        </figure>
+
+        <!-- </div> -->
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+
+  <nav class="row center-xs mgn-b-2">
+    <a class="" href="/news">Show All</a>
+  </nav>
+
+</div>
+<script src="static/js/bundle.js"></script>
+{% endblock %}

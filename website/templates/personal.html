@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block content %}
+<div class="wrapper-md">
+    <section class="container-fluid container-section container-section__primary story">
+        <p class="text-center">
+            {% if user.img_url %}
+            <img class="circle lg" src="{{url_for('static', filename='img/'+user.img_url)}}"> {% endif %}
+        </p>
+        <p class="text-center">
+            <span class="capitalize">{{user.first_name}}</span>&nbsp;
+            <span class="capitalize">{{user.last_name}}</span>
+        </p>
+        {% if user.student %}
+        <p class="text-center">Year of enter : {{user.student.year_of_enter}}</p>
+        <p class="text-center">Field of study :
+            <span class="capitalize">{{user.student.field_of_study}}</span>
+        </p>
+        <p class="text-center">Degree :
+            <span class="capitalize">{{user.student.degree}}</span>
+        </p>
+        {% endif %} {% if user.professor %}
+        <p class="text-center">Level : {{user.professor.level}}</p>
+        <p class="text-center">Field of study :
+            <span class="capitalize">{{user.professor.field_of_study}}</span>
+        </p>
+        <p class="text-center">Degree :
+            <span class="capitalize">{{user.professor.degree}}</span>
+        </p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

@@ -2,9 +2,13 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: ['./assets/js/app.js', './assets/scss/main.scss'],
+    entry: {
+        app: './assets/js/app.js',
+        slider:'./assets/js/slider-loader.js',
+        scss: './assets/scss/main.scss'
+    },
     output: {
-        filename: 'js/bundle.js',
+        filename: 'js/[name].bundle.js',
         path: path.resolve(__dirname, 'website/static/')
     },
     module: {
@@ -13,7 +17,7 @@ module.exports = {
                 loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif|svg)$/,
                 use: [{
                     loader: 'url-loader',
                 }]

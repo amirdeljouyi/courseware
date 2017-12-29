@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- guilan university dosen't have favicon :) <link rel="icon" href="../../../../favicon.ico"> -->
+
+  <title>University of Guilan</title>
+  <!-- compiled my scss files -->
+  <link href="{{url_for('static', filename='css/main.bundle.css')}}" rel="stylesheet">
+  <!-- /my scss files -->
+
+  <!-- css for font-awesome -->
+  <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+  <!-- /font-awesome -->
+
+  <!-- optional css for medium-editor -->
+  <link href="/static/css/beagle.min.css" rel="stylesheet">
+  <link href="/static/css/medium-editor.min.css" rel="stylesheet">
+  <!-- /medium-editor -->
+  <script src="/static/js/app.bundle.js"></script>
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="wrapper-md">
+      <div class="row">
+        <div class="site-logo">
+          <a href="/" title="Go to U of G homepage">
+            <img class="site-logo-large" src="{{url_for('static', filename='img/r_38_160521140419-273x300.png')}}" alt="University of Guilan">
+          </a>
+        </div>
+        <div class="header-menu left-menu">
+          <ul class="menu clearfix">
+            {% if current_user.is_authenticated %}
+            <li class="avatar">
+              <a href="/personal">
+                {% if current_user.img_url %}
+                <img src="{{url_for('static', filename='img/'+ current_user.img_url)}}"> &nbsp;
+                {% endif %}
+                <span>
+                  {{current_user.first_name}} {{current_user.last_name}}
+                </span>
+              </a>
+            </li>
+            {% else %}
+            <li>
+              <a href="/auth/login">
+                <span>
+                  <i class="fa fa-user-circle-o fa-lg"></i>&nbsp; Login</span>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="header-menu right-menu">
+          <ul class="menu clearfix">
+            {% if current_user.is_authenticated %}
+            <li>
+              <a class="br-secondary" href="/auth/logout">Logout</a>
+            </li>
+            {% endif %}
+            <li>
+              <a class="br-tr" href="#">
+                <i class="fa fa-search"></i>&nbsp; Search</a>
+            </li>
+          </ul>
+        </div>
+        <div class="mobile clearfix">
+          <div class="bar">
+            <a href="#">menu</a>
+          </div>
+          <input class="search" type="submit" value="Search">
+        </div>
+      </div>
+    </div>
+    <nav class="navbar">
+      <ul class="navbar-wrapper">
+        <li class="col-xs-12 col-md-2 navbar-item {{'active' if pageNum==1 }}">
+          <a href="/">Home</a>
+        </li>
+        <li class="col-xs-12 col-md-2 navbar-item {{'active' if pageNum==2 }}">
+          <a href="/news">News</a>
+        </li>
+        <li class="col-xs-12 col-md-2 navbar-item {{'active' if pageNum==3 }}">
+          <a href="/student">Current Students</a>
+        </li>
+        <li class="col-xs-12 col-md-2 navbar-item {{'active' if pageNum==4 }}">
+          <a href="/course">Course</a>
+        </li>
+        <li class="col-xs-12 col-md-2 navbar-item {{'active' if pageNum==5 }}">
+          <a href="/faculty">Faculty & Staff</a>
+        </li>
+        <li class="col-xs-12 col-md-2 navbar-item {{'active' if pageNum==6 }}">
+          <a href="/about">About</a>
+        </li>
+      </ul>
+      {% block subnav %} {% endblock %}
+    </nav>
+  </header>
+
+  <div class="page">
+    {% block content %} {% endblock %}
+  </div>
+
+  <footer class="container-fluid">
+    <div class="row center-xs social-icons">
+      <ul>
+        <li>
+          <a alt="Twitter" aria-hidden="true" href="#" href="#">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li>
+          <a alt="Instagram" aria-hidden="true" href="#" href="#">
+            <i class="fa fa-instagram"></i>
+          </a>
+        </li>
+        <li>
+          <a alt="YouTube" aria-hidden="true" href="#" href="#">
+            <i class="fa fa-youtube"></i>
+          </a>
+        </li>
+        <li>
+          <a alt="LinkedIn" aria-hidden="true" href="#" href="#">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="row center-xs copyright">
+      <p>UNIVERSITY OF GUILAN - SINCE 1974</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>

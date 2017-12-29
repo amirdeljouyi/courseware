@@ -1,7 +1,7 @@
 .navbar {
     background: $navbar-bg;
-   
-    .navbar-wrapper{
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+    .navbar-wrapper {
         display: flex;
         flex-direction: row;
         padding-left: 0;
@@ -15,9 +15,9 @@
         padding-left: 0;
         list-style: none;
         transition: all ease-out 0.3s;
-        border-right: $navbar-item-border-size solid $navbar-item-border-color;        
-        >a{
-            color: $navbar-item-color;            
+        border-right: $navbar-item-border-size solid $navbar-item-border-color;
+        >a {
+            color: $navbar-item-color;
             padding: 10px;
             display: block;
             text-transform: uppercase;
@@ -26,30 +26,75 @@
         &:hover {
             background-color: $navbar-item-bg-hover;
         }
-        &:last-child{
+        &:last-child {
             border-right: 0px;
         }
     }
 }
 
-.navbar-item a{
+.navbar-item a {
     font-size: 13px;
     letter-spacing: 0;
 }
-.navbar{
+
+.navbar {
     display: none;
-}
-@media (min-width:62em){
-    .navbar{
-        display: flex;
-        flex-wrap: wrap; // allow us to do the line break for collapsing content
-        align-items: center;
-        justify-content: space-between;
+    transition: all ease-out 0.3s;
+    &.show{
+        display: block;
+        .navbar-wrapper{
+            flex-direction: column;
+        }
+        .subnav-wrapper{
+            flex-direction: column;
+            justify-content: flex-start;
+        }
     }
 }
-@media (min-width:75em){
-    .navbar-item a{
+
+@media (min-width:62em) {
+    .navbar {
+        display: block;
+    }
+}
+
+@media (min-width:75em) {
+    .navbar-item a {
         font-size: 15px;
         letter-spacing: 1px;
+    }
+}
+
+.subnav {
+    margin-top: 6px;
+    background-color: #fff;
+    .subnav-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        min-height: 50px;
+        margin-bottom: 0px;
+    }
+    .subnav-item {
+        text-align: center;
+        padding-right: 0;
+        padding-left: 0;
+        list-style: none;
+        >a {
+            color: $color-secondary;
+            padding: 10px;
+            display: block;
+            text-transform: uppercase;
+        }
+        &.active {
+            border-bottom: 4px solid #485667;
+        }
+        &.active,
+        &:hover {
+            a {
+                transition: all ease-out 0.3s;
+                color: #485667;
+            }
+        }
     }
 }

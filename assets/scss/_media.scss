@@ -16,6 +16,11 @@
     height: 100%;
 }
 
+.img-full{
+    width: 100%;
+    height: 100%;
+}
+
 @media only screen and (min-width: 62em) {
     .img-md {
         height: 152px;
@@ -32,6 +37,10 @@
     text-transform: uppercase;
 }
 
+.capitalize{
+    text-transform: capitalize;
+}
+
 .text-lg{
     font-size: 1.2em;
 }
@@ -42,4 +51,97 @@
 
 .text-primary-color{
     color: $color-primary;
+}
+
+.blur{
+    filter: blur(3px);
+}
+
+.gradient {
+    width: 100%;
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+    }
+    &.darker:after{
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);            
+    }
+}
+
+.br-primary,.br-secondary,.br-tr{
+    transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+}
+
+.bg-secondary{
+    background-color: $color-secondary;
+}
+
+.br-tr{
+    border: 1px solid #337AB7;
+    background-color: transparent;
+    &:hover,
+    &:focus {
+        background-color: #fff;
+        color: $color-secondary;
+    }
+}
+
+.br-primary{
+    border: 1px solid #337AB7;
+    background-color: $color-primary;
+    &:hover,
+    &:focus {
+        background-color: #fff;
+        color: $color-secondary;
+    }
+}
+
+.br-secondary{
+    border: 1px solid #337AB7;
+    background-color: $color-secondary;
+    &:hover,
+    &:focus {
+        background-color: #fff;
+        color: $color-secondary;
+    }
+}
+
+.circle{
+    border-radius: 50%;
+    &.lg{
+        width: 200px;
+        height: 200px;
+    }
+    &.md{
+        width: 150px;
+        height: 150px;
+    }
+}
+
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 85%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+    color:white;
+    background-color: $color-secondary;
+    &.active{
+        background-color: $color-primary;
+    }
 }

@@ -1,0 +1,41 @@
+.card{
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 15px;
+    &.horizontally{
+        flex-direction: row;
+        align-items: center;
+        font-size: .85em;
+        >img{
+            display: block;
+            margin-right: 10px;
+        }
+        >figcaption{
+            border-left: 1px solid $color-primary;
+            display: block;
+            padding-left: 10px;
+        }
+    }
+    &.vertically{
+        flex-direction: column;
+        height: 200px;
+        padding: 10px;
+        color: white;
+        p,h4{
+            margin-top: 0px;
+        }
+    }
+    &.card-text{
+        background-color: $color-primary;
+        .corner{
+            text-align: right;
+            border-bottom: none;
+            position: absolute;
+            width: 100%;
+            bottom: 0px;
+            right: 10px;
+            font-weight: 700;
+        }
+    }
+}

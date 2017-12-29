@@ -1,19 +1,21 @@
-import _ from 'lodash';
-import Slider from './slider';
-// require('../scss/main.scss');
+window.onscroll = function () {
+    if (document.body.scrollTop >= 158 || document.documentElement.scrollTop >= 158){
+        document.querySelector('.header').classList.add('minimize');
+    }
+    if (document.body.scrollTop < 158 && document.documentElement.scrollTop < 158){
+        document.querySelector('.header').classList.remove('minimize');
+    }
+};
 document.addEventListener('DOMContentLoaded', function () {
-    var sliderOptions = {};
-    var slider = new Slider(document.querySelector('.carousel'), sliderOptions),
-        loopStarted = true,
-        loop;
-
-    document.querySelector('.slideshow__prev').addEventListener('click', function (event) {
-        event.preventDefault();
-        slider.prev();
-    });
-
-    document.querySelector('.slideshow__next').addEventListener('click', function (event) {
-        event.preventDefault();
-        slider.next();
+    showNavbar = false;
+    
+    document.querySelector('.bar').addEventListener('click', () => {
+        if (showNavbar) {
+            document.querySelector('.navbar').classList.remove('show');
+            showNavbar = false;
+        } else {
+            document.querySelector('.navbar').classList.add('show');
+            showNavbar = true;
+        }
     });
 });
