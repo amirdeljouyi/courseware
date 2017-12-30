@@ -13,19 +13,32 @@
 <div class="{{'mgn-subnav' if current_user.is_authenticated }} container-fluid">
     <div class="row">
         <div class="container container-fluid text-center">
-            <p>Categories :</p>
+            {% if tag %}
+            <p>Tags :</p>
             <p>
-                {% for category in categories %}
-                <a href="{{ url_for('news.showCategory', categoryid=category.id)}}">
-                    <span class="badge {{'active' if pageName==category.name }}">{{category.name}}</span>
+                {% for tagOrCategory in tagsOrCategories %}
+                <a href="{{ url_for('news.showTag', tagid=tagOrCategory.id)}}">
+                    <span class="badge {{'active' if pageName==tagOrCategory.name }}">{{tagOrCategory.name}}</span>
                 </a>
                 {% endfor %}
             </p>
+            {% else %}
+            <p>Categories :</p>
+            <p>
+                {% for tagOrCategory in tagsOrCategories %}
+                <a href="{{ url_for('news.showCategory', categoryid=tagOrCategory.id)}}">
+                    <span class="badge {{'active' if pageName==tagOrCategory.name }}">{{tagOrCategory.name}}</span>
+                </a>
+                {% endfor %}
+            </p>
+            {% endif %}
+
         </div>
     </div>
     <div class="row">
         <section class="container container-section container-section__primary">
-            <h2><span class="capitalize">{{pageName}}</span> News</h2>
+            <h2>
+                <span class="capitalize">{{pageName}}</span> News</h2>
             <div class="posts">
                 {% for post in posts %}
 

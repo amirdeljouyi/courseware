@@ -9,9 +9,14 @@ mod_course = Blueprint('course', __name__, url_prefix='/course')
 
 @mod_course.route('/')
 def course():
-    courses = db.session.query(Course).all()
+    courses = db.session.query(Course).order_by(Course.year.desc()).all()
     return render_template('course/list.html', courses=courses, pageNum=4)
 
+@mod_course.route('/filter', methods=['POST'])
+def filterCourse():
+    year=int(request.form['year'])
+    courses = db.session.query(Course).filter(Course.year == year).all()
+    return render_template('course/list.html', courses=courses, pageNum=4)
 
 @mod_course.route('/<courseid>')
 @login_required

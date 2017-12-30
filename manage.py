@@ -2,8 +2,8 @@ from website import db, app
 from flask_script import Manager
 from website.models import Student, Professor
 from website.mod_course.models import Course, Slide
-from website.mod_news.models import Post, Category 
-from website.mod_auth.models import User, Authority , authorities_users
+from website.mod_news.models import Post, Category , Tag
+from website.mod_auth.models import User, Authority
 from werkzeug.security import check_password_hash, generate_password_hash
 
 manager = Manager(app)
@@ -148,13 +148,15 @@ def buildUsers():
 
 
 machineLearning = Course(
-        title="Machine Learning",
-        about="Learn Evoloution Algoritms , Genetic and more",
-        degree="bachelor",
-        homework="Exercise 2",
-        resources="Machine Learning from amir",
-        syllabus="From molecular genetics to sustainable urban infrastructure – global security in the age of cyber-espionage to music composition, our internationally renowned teachers and researchers are leaders in their fields."
-    )
+    title="Machine Learning",
+    about="Learn Evoloution Algoritms , Genetic and more",
+    year=1396,
+    degree="bachelor",
+    homework="Exercise 2",
+    resources="Machine Learning from amir",
+    syllabus="From molecular genetics to sustainable urban infrastructure – global security in the age of cyber-espionage to music composition, our internationally renowned teachers and researchers are leaders in their fields."
+)
+
 
 def buildCourse():
     sOne = Slide(
@@ -174,6 +176,7 @@ def buildCourse():
 
     c = Course(
         title="Automata theory",
+        year=1397,
         about="Automata theory is the study of abstract machines and automata, as well as the computational problems that can be solved using them",
         degree="bachelor"
     )
@@ -184,27 +187,20 @@ def buildCourse():
 
 def buildPosts():
 
-    it = Category(
-        name="it"
-    )
+    it = Category(name="it")
+    sport = Category(name="sport")
+    science = Category(name="science")
+    culture = Category(name="culture")
+    course = Category(name="course")
 
-    sport = Category(
-        name="sport"
-    )
+    db.session.add_all([it, sport, culture, science, course])
 
-    science = Category(
-        name="science"
-    )
-
-    culture = Category(
-        name="culture"
-    )
-
-    course = Category(
-        name="course"
-    )
-
-    db.session.add_all([it, sport, culture, science,course])
+    ai = Tag(name="ai")
+    event = Tag(name="event")
+    health = Tag(name="health")
+    museum = Tag(name="museum")
+    tour = Tag(name="tour")
+    exam = Tag(name="exam")
 
     p = Post(
         title="Panel Discussion on Big Data and Artificial Intelligence in Healthcare",
@@ -214,9 +210,8 @@ def buildPosts():
         date="2017",
         img_url="Events-BANNER-1440x277.png",
         category=it,
-        tags="ai,event,health"
     )
-
+    p.tags.extend([ai,event,health])
     db.session.add(p)
 
     p = Post(
@@ -227,8 +222,8 @@ def buildPosts():
         date="2017",
         img_url="dinosaur-museum.jpg",
         category=culture,
-        tags="event,musem"
     )
+    p.tags.extend([event,museum])
     db.session.add(p)
 
     p = Post(
@@ -239,9 +234,8 @@ def buildPosts():
         date="2017",
         img_url="Shahrdari-1.jpg",
         category=culture,
-        tags="tour"
     )
-
+    p.tags.extend([tour])
     db.session.add(p)
 
     p = Post(
@@ -252,9 +246,9 @@ def buildPosts():
         date="2017",
         img_url="filip-mroz-177565.jpg",
         category=sport,
-        tags="event"
     )
 
+    p.tags.extend([event])
     db.session.add(p)
 
     p = Post(
@@ -265,8 +259,10 @@ def buildPosts():
         date="2017",
         img_url="bcar_pathways.jpg",
         category=science,
-        tags="event,tour"
     )
+
+    p.tags.extend([event,tour])
+    db.session.add(p)
 
     p = Post(
         title="Machine Learning Exam",
@@ -277,9 +273,8 @@ def buildPosts():
         img_url="brain.jpg",
         category=course,
         course=machineLearning,
-        tags="exam"
     )
-
+    p.tags.extend([exam])
     db.session.add(p)
 
     db.session.commit()

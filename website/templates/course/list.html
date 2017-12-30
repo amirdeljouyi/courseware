@@ -11,6 +11,20 @@
     <img class="stripe" src="../static/img/block_background.jpg">
 
     <section class="stripe-content wrapper-md">
+        <div class="container-fluid mgn-b-2">
+            <form class="" action="/course/filter" method="post">
+                <div class="row between-xs">
+                    <div class="text-lg text-primary-color">
+                        <span>Year is</span>
+                        <select name="year">
+                            <option value="1397">1397</option>
+                            <option value="1396">1396</option>
+                        </select>
+                    </div>
+                    <button class="btn primary center" type="submit">Filter</button>
+                </div>
+            </form>
+        </div>
         <div class="row">
             {% for course in courses %}
             <div class="col-xs-6 col-sm-4 col-md-3">
@@ -21,7 +35,7 @@
                         </h4>
                     </a>
                     <p>{{course.about}}</p>
-                    <p class="corner">
+                    <p class="corner"></p>
                         <span class="capitalize">{{course.degree}}</span>
                     </p>
                 </div>

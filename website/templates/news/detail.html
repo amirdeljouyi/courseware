@@ -12,8 +12,8 @@
         <a href="{{ url_for('showUser', userid=post.user.id)}}"> {{ post.user.first_name }} {{ post.user.last_name }}</a>
       </p>
       <div class="tags">
-        {% for tag in post.tagsList %}
-          <a href="#">{{tag}}</a>
+        {% for tag in post.tags %}
+          <a href="{{ url_for('news.showTag', tagid=tag.id)}}">{{tag.name}}</a>
         {% endfor %}
       </div>
     </section>
