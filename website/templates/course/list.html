@@ -1,4 +1,15 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% block subnav %} {% if auth %}
+<nav class="subnav">
+    <ul class="subnav-wrapper container container-fluid">
+        <li class="subnav-item active">
+            <a href="/course">All Course</a>
+        </li>
+        <li class="subnav-item">
+            <a href="/course/add">Add Course</a>
+        </li>
+    </ul>
+</nav>
+{% endif %} {% endblock %} {% block content %}
 <div class="banner">
     <div class="gradient darker">
         <img class="img-res-w blur" src="../static/img/academics_culinaria.jpg">
@@ -29,15 +40,23 @@
             {% for course in courses %}
             <div class="col-xs-6 col-sm-4 col-md-3">
                 <div class="card card-text vertically">
-                    <a href="{{ url_for('course.showCourse', courseid=course.id)}}">
+                    <a href="{{ url_for('course.getCourse', courseid=course.id)}}">
                         <h4>
                             <span class="capitalize">{{course.title}}</span>
                         </h4>
                     </a>
-                    <p>{{course.about}}</p>
+                    <p>{{course.minor_title}}</p>
                     <p class="corner"></p>
-                        <span class="capitalize">{{course.degree}}</span>
+                    <span class="capitalize">{{course.degree}}</span>
                     </p>
+                    {% if auth %}
+                    <div class="btn-group bottom">
+                        <a class="btn text-center btn-6 primary center" href="{{ url_for('course.editCourse', courseid=course.id)}}">edit</a>
+                        <form class="block" action="{{ url_for('course.deleteCourse', courseid=course.id)}}" method="POST">
+                            <button class="btn btn-6 danger-bg-color white-color center">delete</button>
+                        </form>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}

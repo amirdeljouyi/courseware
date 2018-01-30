@@ -87,13 +87,13 @@
             text-transform: uppercase;
         }
         &.active {
-            border-bottom: 4px solid #485667;
+            border-bottom: 4px solid $color-quaternary;
         }
         &.active,
         &:hover {
             a {
                 transition: all ease-out 0.3s;
-                color: #485667;
+                color: $color-quaternary;
             }
         }
     }

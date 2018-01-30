@@ -10,6 +10,9 @@
     width: 50%;
     position: relative;
     font-size: .85em;
+    &__full{
+        width: 100%;
+    }
     .post-link {
         position: absolute;
         right: 0;

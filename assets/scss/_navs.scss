@@ -1,0 +1,30 @@
+.nav {
+    &>.vertical-wrapper {
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0px;
+        .nav-item {
+            text-align: left;
+            flex-basis: 100%;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+            &.active,
+            &:hover {
+                .nav-link {
+                    transition: all ease-out 0.3s;
+                    color: $color-secondary;
+                }
+            }
+        }
+        .nav-link {
+            color: $color-quaternary;
+            font-size: 15px;
+            padding: 16px 20px;
+            display: block;
+            &>* {
+                font-weight: 200;
+            }
+        }
+    }
+}

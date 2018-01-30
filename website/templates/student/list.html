@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block subnav %} {% if auth %}
+<nav class="subnav">
+    <ul class="subnav-wrapper container container-fluid">
+        <li class="subnav-item active">
+            <a href="/student">All Student</a>
+        </li>
+        <li class="subnav-item">
+            <a href="/student/add">Add Student</a>
+        </li>
+    </ul>
+</nav>
+{% endif %} {% endblock %} {% block content %}
+<div class="banner">
+    <div class="gradient darker">
+        <img class="img-res-w blur" src="../static/img/vb-fans-audiencebanner.jpg">
+    </div>
+    <div class="caption caption-image">
+        <img src="../static/img/Title_CurrentStudents.png">
+    </div>
+</div>
+<div class="container-fluid stripe-container">
+    <img class="stripe" src="../static/img/block_background.jpg">
+
+    <section class="wrapper-md stripe-content">
+        <div class="row">
+            {% for student in students %}
+            <figure class="col-xs-12 col-sm-6 card horizontally">
+                {% if student.user.img_url %}
+                <img class="circle md" src="{{url_for('static', filename='img/'+student.user.img_url)}}"> {% endif %}
+                <figcaption>
+                    <a href="{{ url_for('showUser', userid=student.user.id)}}">
+                        <span class="capitalize">{{student.user.first_name}}</span>&nbsp;
+                        <span class="capitalize">{{student.user.last_name}}</span>
+                    </a>
+                    <p>Year of enter : {{student.year_of_enter}}</p>
+                    <p>Field of study :
+                        <span class="capitalize">{{student.field_of_study}}</span>
+                    </p>
+                    <p>Degree :
+                        <span class="capitalize">{{student.degree}}</span>
+                    </p>
+                    {% if auth %}
+                    <div class="btn-group">
+                        <a href="{{ url_for('student.editStudent', studentid=student.id)}}" class="btn btn-6 primary center">edit</a>
+                        <form class="block" action="{{ url_for('student.deleteStudent', studentid=student.id)}}" method="POST">
+                            <button class="btn btn-6 danger-bg-color white-color center">delete</button>
+                        </form>
+                    </div>
+                    {% endif %}
+                </figcaption>
+            </figure>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

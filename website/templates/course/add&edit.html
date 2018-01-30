@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% block subnav %} {% if course is not defined %}
+<nav class="subnav">
+  <ul class="subnav-wrapper container container-fluid">
+    <li class="subnav-item">
+      <a href="/course">All Course</a>
+    </li>
+    <li class="subnav-item active">
+      <a href="/course/add">Add Course</a>
+    </li>
+  </ul>
+</nav>
+{%endif%} {% endblock %} {% block content %}
+<form class="block" action="/course/{{'edit/'+course.id | string if course is defined else 'add'}}" method="POST" enctype="multipart/form-data">
+  <div class="{{'mgn-subnav' if pageNum==1 }} banner fit-height__subnav col-xs center-xs middle-xs">
+    <div class="upload-btn-wrapper">
+      <button class="upload-btn">Upload a Video</button>
+      <input type="file" name="file">
+    </div>
+  </div>
+
+  <div class="wrapper-md mgn-minus">
+    <div class="row">
+      <div class="col-xs-12 ">
+        <div class="headline">
+          <h1>
+            <input name="title" class="title white-color transparent-bg-color" type="text" placeholder="Title" value="{{course.title if course is defined }}">
+          </h1>
+          <h4>
+            <input name="minor_title" class="fit-width white-color transparent-bg-color" type="text" placeholder="Title" value="{{course.minor_title if course is defined }}">
+          </h4>
+        </div>
+        <section id="course" class="container-fluid">
+          <h4 class="inline text-tertiary-color br-b-tertiary">About This Course</h4>
+          <div class="story mgn-b-2">
+            <p>
+              <textarea name="about" class="text-lg editable medium-editor-textarea">{{course.about if course is defined }}</textarea>
+            </p>
+          </div>
+          <h4 class="inline text-tertiary-color br-b-tertiary">Degree</h4>
+          <div class="story mgn-b-2">
+            <p>
+              <input name="degree" class="transparent-bg-color" type="text" placeholder="Degree" value="{{course.degree if course is defined }}">
+            </p>
+          </div>
+          <h4 class="inline text-tertiary-color br-b-tertiary">Term</h4>
+          <div class="story mgn-b-2">
+            <p>
+              <input name="term" class="transparent-bg-color" type="text" placeholder="Term" value="{{course.term.year if course is defined }}">
+            </p>
+          </div>
+          <h4 class="inline text-tertiary-color br-b-tertiary">Syllabus</h4>
+          <div class="story mgn-b-2">
+            <p>
+              <input name="syllabus" class="transparent-bg-color" type="text" placeholder="Syllabus" value="{{course.syllabus if course is defined }}">
+            </p>
+          </div>
+          <h4 class="inline text-tertiary-color br-b-tertiary">Homework</h4>
+          <div class="story mgn-b-2">
+            <p>
+              <input name="homework" class="transparent-bg-color" type="text" placeholder="Homework " value="{{course.homework if course is defined }}">
+            </p>
+          </div>
+          <h4 class="inline text-tertiary-color br-b-tertiary">Recources</h4>
+          <div class="story mgn-b-2">
+            <p>
+              <input name="resources" class="transparent-bg-color" type="text" placeholder="Resources" value="{{course.resources if course is defined }}">
+            </p>
+          </div>
+          <h4 class="inline text-tertiary-color br-b-tertiary">Add Teacher</h4>
+          <div class="story mgn-b-2">
+            <p>
+              <input name="teacher" class="transparent-bg-color" type="text" placeholder="Add Teacher">
+            </p>
+          </div>
+          <div class="row center-xs mgn-b-2">
+            <button class="btn primary center" type="submit">{{'Update' if course is defined else 'Add'}}</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script src="{{url_for('static', filename='js/medium-editor.min.js')}}"></script>
+<script>
+  var editor = new MediumEditor('.editable', {
+    buttonLabels: 'fontawesome'
+  });
+</script>
+{% endblock %} {% block archive %} {% endblock %}

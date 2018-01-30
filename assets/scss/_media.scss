@@ -21,6 +21,11 @@
     height: 100%;
 }
 
+.video-res{
+    object-fit: cover;
+    width:100%;
+}
+
 @media only screen and (min-width: 62em) {
     .img-md {
         height: 152px;
@@ -144,4 +149,36 @@
     &.active{
         background-color: $color-primary;
     }
+}
+.inline{
+    display: inline;
+}
+
+.text-tertiary-color{
+    color:$color-tertiary !important;
+}
+
+.br-b-tertiary{
+    padding-bottom: 5px;
+    border-bottom: 1px solid $color-tertiary;
+}
+
+.danger-color{
+    color: #d14836;
+}
+
+.danger-bg-color{
+    background-color: #d14836;
+}
+
+.white-color{
+    color: white;
+}
+
+.white-bg-color{
+    background-color: white;
+}
+
+.transparent-bg-color{
+    background-color: transparent;
 }

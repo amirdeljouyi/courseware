@@ -6,13 +6,17 @@ tags_posts = db.Table('tags-posts',
                              db.Column('post_id', db.Integer,
                                        db.ForeignKey('post.id'), primary_key=True))
 class Tag(db.Model):
-    name = db.Column(db.String(120), nullable=False)
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
 
 class Category(db.Model):
-    name = db.Column(db.String(120), nullable=False)
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
     posts = db.relationship('Post', backref='category', lazy='dynamic')
+
+class Slider(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,6 +30,16 @@ class Post(db.Model):
     content_mini = db.Column(db.String(180), nullable=True)
     content = db.Column(db.Text, nullable=True)
     date = db.Column(db.String(120), nullable=True)
+    
+    def toJSON(self):
+        return {
+            'id':self.id,
+            'title': self.title,
+            'img_url':self.img_url,
+            'content':self.content,
+            'content_mini':self.content_mini,
+            'date':self.date,
+        }
 
     def __str__(self):
         return str(self.id) + ' ' + str(self.title)

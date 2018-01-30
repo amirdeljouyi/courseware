@@ -1,12 +1,28 @@
-from flask import Blueprint , render_template, request, redirect, url_for
-from website import app, db
-from website.models import  Student, Professor
+from flask import Blueprint, render_template, request, redirect, url_for
+from functools import wraps
+from website import app, db, login_manager
+from website.mod_student.models import Student
+from website.mod_professor.models import Professor
 from website.mod_auth.models import User, Authority
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash
 
 # Define the blueprint: 'auth', set its url prefix: app.url/auth
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
+
+
+def login_required(role="Any"):
+    def wrapper(fn):
+        @wraps(fn)
+        def decorated_view(*args, **kwargs):
+            if not current_user.is_authenticated:
+                return login_manager.unauthorized()
+            if (not current_user.isHaveRole(role)) and (role != "Any"):
+                return login_manager.unauthorized()
+            return fn(*args, **kwargs)
+        return decorated_view
+    return wrapper
+
 
 @mod_auth.route('/login', methods=['GET', 'POST'])
 def login():

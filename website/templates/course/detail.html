@@ -2,40 +2,71 @@
 <nav class="subnav">
     <ul class="subnav-wrapper container container-fluid">
         <li class="subnav-item {{'active' if subPageNum==1 }}">
-            <a href="{{ url_for('course.showCourse', courseid=course.id)}}">General</a>
+            <a href="{{ url_for('course.getCourse', courseid=course.id)}}">General</a>
         </li>
+        {% if auth %}
         <li class="subnav-item {{'active' if subPageNum==2 }}">
-            <a href="{{ url_for('course.showCourseResources', courseid=course.id)}}">Resources</a>
+            <a href="{{ url_for('course.addNews', courseid=course.id)}}">Add News</a>
         </li>
-        <li class="subnav-item {{'active' if subPageNum==3 }}">
-            <a href="{{ url_for('course.showCourseSyllabus', courseid=course.id)}}">Syllabus</a>
-        </li>
-        <li class="subnav-item {{'active' if subPageNum==4 }}">
-            <a href="{{ url_for('course.showCourseSlides', courseid=course.id)}}">Slides</a>
-        </li>
-        <li class="subnav-item {{'active' if subPageNum==5 }}">
-            <a href="{{ url_for('course.showCourseHomework', courseid=course.id)}}">Homework</a>
-        </li>
-        <li class="subnav-item {{'active' if subPageNum==6 }}">
-            <a href="{{ url_for('course.showCourseNews', courseid=course.id)}}">News</a>
-        </li>
+        {% endif %} {% if enroll %}
+        <!-- <li class="subnav-item {{'active' if subPageNum==2 }}">
+            <a href="#">Upload Homework</a>
+        </li> -->
+        {% endif %}
     </ul>
 </nav>
 {% endblock %} {% block content %}
-<div class="wrapper-md">
-    <section class="mgn-subnav container-fluid container-section container-section__primary story">
-        {% block detail %}
-        <h2 class="text-center">
-            <span class="capitalize">{{course.title}}</span>
-        </h2>
-        <p class="text-center">{{course.about}}</p>
-        <p class="text-center">Degree :
-            <span class="capitalize">{{course.degree}}</span>
-        </p>
-        <p class="text-center">Year :
-            <span class="capitalize">{{course.year}}</span>
-        </p>
-        {% endblock %}
-    </section>
+<div class="banner fit-height__subnav mgn-subnav">
+    <div class="gradient">
+        <video poster="/static/img/video-bg.jpg" autoplay="autoplay" loop="loop" class="video-res">
+            <source src="{{url_for('static', filename='video/'+course.video_url)}}">
+        </video>
+    </div>
+</div>
+
+<div class="wrapper-md mgn-minus">
+    <div class="row">
+        <nav class="nav hidden-sm-down col-md-3">
+            <ul class="vertical-wrapper">
+                <li class="nav-item ">
+                    <a class="nav-link about" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link resources" href="#">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link syllabus" href="#">Syllabus</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link slides" href="#">Slides</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link homework" href="#">Homework</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link news" href="#">News</a>
+                </li>
+                {% if not enroll %}
+                <li class="nav-item">
+                    <a class="nav-link enroll">
+                        <h2>{{course.title}}</h2>
+                        <form class="block" action="{{ url_for('course.enrollCourse', courseid=course.id)}}" method="POST">
+                            <button class="btn primary lg fluid center">Enroll</button>
+                        </form>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div class="col-sm-12 col-md-9">
+            <div class="headline mgn-b-md-up-6">
+                <h1>{{course.title}}</h1>
+                <h4>{{course.minor_title}}</h4>
+            </div>
+            <section id="course" class="container-fluid"></section>
+            <script src="{{url_for('static', filename='js/course.bundle.js')}}">
+            </script>
+        </div>
+    </div>
 </div>
 {% endblock %}

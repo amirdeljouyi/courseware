@@ -2,6 +2,9 @@ form {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
+    &.block {
+        display: block;
+    }
 }
 
 input {
@@ -28,6 +31,33 @@ textarea,
     padding: 0 0 15px 0;
 }
 
+.btn-group {
+    display: flex;
+}
+
+.btn-6 {
+    @include flex-basis(50%);
+}
+
+.btn-inline {
+    vertical-align: middle;
+    font-size: 0.5em;
+    line-height: 1.6em;
+    display: inline-block;
+    border: 0;
+    padding: 0.3em 0.7em;
+    border-radius: 2px;
+    transition: all ease-out 0.3s;
+    &.primary {
+        background-color: $btn-primary-bg;
+        color: $btn-primary-color;
+        &:focus,
+        &:hover {
+            background-color: $btn-primary-bg-hover;
+        }
+    }
+}
+
 .btn {
     border: none;
     padding: 10px 30px;
@@ -46,6 +76,12 @@ textarea,
         &:hover {
             background-color: $btn-primary-bg-hover;
         }
+    }
+    &.lg {
+        padding: 15px 30px;
+    }
+    &.fluid {
+        width: 100%;
     }
 }
 
@@ -110,13 +146,37 @@ select {
     cursor: pointer;
 }
 
-.cb:checked ~ .cbx {
+.cb:checked~.cbx {
     border-color: transparent;
     background: $color-primary;
     animation: ease 0.6s ease;
 }
 
-.cb:checked ~ .cbx:after {
+.cb:checked~.cbx:after {
     opacity: 1;
     transform: rotate(45deg) scale(1);
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: transparent;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
 }

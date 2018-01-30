@@ -1,9 +1,0 @@
-{% extends "course/detail.html" %} {% block detail %}
-<h2 class="text-center">
-    <span class="capitalize">{{course.title}}</span>
-</h2>
-<p class="text-center">Slides :</p>
-{% for slide in slides %}
-<p class="text-center"><a href="{{url_for('static',filename='slide/'+slide.url)}}">{{slide.name}}</a></p>
-{% endfor %}
-{% endblock %}

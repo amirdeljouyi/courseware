@@ -40,25 +40,43 @@
             <h2>
                 <span class="capitalize">{{pageName}}</span> News</h2>
             <div class="posts">
-                {% for post in posts %}
+                {% if tc %}
+                    {% for post in posts %}
 
-                <figure class="post">
-                    <a class="post-link" href="{{ url_for('news.showPost', postid=post.id)}}"></a>
-                    <img src="{{url_for('static', filename='img/'+post.img_url)}}">
-                    <figcaption>
-                        <h4 class="blog-post-title"> {{ post.title }}</h2>
-                            <p>{{post.content_mini}}</p>
-                    </figcaption>
-                </figure>
-                {% endfor %}
+                    <figure class="post">
+                        <a class="post-link" href="{{ url_for('news.showPost', postid=post.id)}}"></a>
+                        <img src="{{url_for('static', filename='img/'+post.img_url)}}">
+                        <figcaption>
+                            <h4 class="blog-post-title"> {{ post.title }}</h2>
+                                <p>{{post.content_mini}}</p>
+                        </figcaption>
+                    </figure>
+                    {% endfor %}
+                {% else %}
+                    {% for post in posts.items %}
+
+                    <figure class="post">
+                        <a class="post-link" href="{{ url_for('news.showPost', postid=post.id)}}"></a>
+                        <img src="{{url_for('static', filename='img/'+post.img_url)}}">
+                        <figcaption>
+                            <h4 class="blog-post-title"> {{ post.title }}</h2>
+                                <p>{{post.content_mini}}</p>
+                        </figcaption>
+                    </figure>
+                    {% endfor %}
+                {% endif %}
             </div>
         </section>
     </div>
-
+    
     <nav class="row center-xs mgn-b-2">
-        <a class="" href="#">Older</a>
+        {% if posts.has_next %}
+        <a class="" href="{{ url_for('news', page=posts.next_num) }}">Older</a>
+        {% else %}Older{% endif %}
         &nbsp;|&nbsp;
-        <a class="" href="#">Newer</a>
+        {% if posts.has_prev %}
+        <a class="" href="{{ url_for('news', page=posts.prev_num) }}">Newer</a>
+        {% else %}Newer{% endif %}
     </nav>
 
 </div>

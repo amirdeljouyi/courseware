@@ -1,0 +1,32 @@
+{% extends "base.html" %} 
+{% block subnav %}
+{% if student is not defined %}
+<nav class="subnav">
+    <ul class="subnav-wrapper container container-fluid">
+        <li class="subnav-item">
+            <a href="/student">All Student</a>
+        </li>
+        <li class="subnav-item active">
+            <a href="/student/add">Add Student</a>
+        </li>
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}
+{% block content %}
+
+<div class="mgn-subnav wrapper-md">
+    <div class="container-section container-section__primary">
+        <form class="story" action="/student/{{'edit/'+student.id | string if student is defined else 'add'}}" method="POST">
+            <input name="firstname" type="text" placeholder="First Name" value="{{student.user.first_name if student is defined }}">
+            <input name="lastname" type="text" placeholder="Last Name" value="{{student.user.last_name if student is defined}}">
+            <input name="username" type="text" placeholder="Username" value="{{student.user.username if student is defined}}">
+            <input name="year_of_enter" type="text" placeholder="Year of Enter" value="{{student.year_of_enter if student is defined}}">
+            <input name="degree" type="text" placeholder="Degree" value="{{student.degree if student is defined}}">
+            <input name="field_of_study" type="text" placeholder="Field Of Study" value="{{student.field_of_study if student is defined}}">
+            <input name="password" type="password" placeholder="New Password">
+            <button class="btn primary center" type="submit">{{'Update' if student is defined else 'Add'}}</button>
+        </form>
+    </div>
+</div>
+{% endblock %} {% block archive %} {% endblock %}

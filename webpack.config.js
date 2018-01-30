@@ -4,7 +4,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     entry: {
         app: './assets/js/app.js',
-        slider:'./assets/js/slider-loader.js',
+        slider: './assets/js/slider-loader.js',
+        course:'./assets/js/course.js',
         scss: './assets/scss/main.scss'
     },
     output: {

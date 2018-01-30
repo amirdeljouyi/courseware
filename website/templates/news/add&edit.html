@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block subnav %} {% if news is not defined %}
+<nav class="subnav">
+  <ul class="subnav-wrapper container container-fluid">
+    <li class="subnav-item">
+      <a href="/news">All News</a>
+    </li>
+    <li class="subnav-item active">
+      <a href="/news/add">Add News</a>
+    </li>
+  </ul>
+</nav>
+{% endif %} {% endblock %} {% block content %}
+
+<div class="mgn-subnav wrapper-md">
+  <div class="container-section container-section__primary">
+    <form class="story" action="/news/{{'edit/'+news.id | string if news is defined else 'add'}}" method="POST" enctype="multipart/form-data">
+      <input name="title" class="title" type="text" placeholder="Title" value="{{news.title if news is defined }}">
+      <textarea name="content" class="text-lg editable medium-editor-textarea">{{news.content if news is defined }}</textarea>
+      <div class="upload-btn-wrapper mgn-b-2">
+        <button class="upload-btn">Upload a Picture</button>
+        <input type="file" name="file">
+      </div>
+      <div class="text-lg text-primary-color">
+        <span>Category is</span>
+        <select name="category">
+          <option value="science">SCINECE</option>
+          <option value="it">IT</option>
+          <option value="sport">SPORT</option>
+          <option value="course">COURSE</option>
+          <option value="culture">CULTURE</option>
+        </select>
+      </div>
+      <div>
+        <h4>Tags:</h4>
+        <span>
+          <input name="tags" class="hidden-xs-up cb" id="ai" type="checkbox" value="ai" />
+          <label class="cbx" for="ai"></label>
+          <label class="lbl" for="ai">AI</label>
+        </span>
+        <span>
+          <input name="tags" class="hidden-xs-up cb" id="event" type="checkbox" value="event" />
+          <label class="cbx" for="event"></label>
+          <label class="lbl" for="event">Event</label>
+        </span>
+        <span>
+          <input name="tags" class="hidden-xs-up cb" id="exam" type="checkbox" value="exam" />
+          <label class="cbx" for="exam"></label>
+          <label class="lbl" for="exam">Exam</label>
+        </span>
+        <span>
+          <input name="tags" class="hidden-xs-up cb" id="tour" type="checkbox" value="tour" />
+          <label class="cbx" for="tour"></label>
+          <label class="lbl" for="tour">Tour</label>
+        </span>
+      </div>
+      <button class="btn primary center" type="submit">{{'Update' if news is defined else 'Add'}}</button>
+    </form>
+    {% if news is defined %}
+    <form class="story mgn-t-2" action="{{ url_for('news.deleteNews', postid=news.id)}}" method="POST" enctype="multipart/form-data">
+      <button class="btn danger-bg-color white-color center" type="submit">Delete</button>
+    </form>
+    {% endif %}
+  </div>
+</div>
+<script src="{{url_for('static', filename='js/medium-editor.min.js')}}"></script>
+<script>
+  var editor = new MediumEditor('.editable', {
+    buttonLabels: 'fontawesome'
+  });
+</script>
+{% endblock %} {% block archive %} {% endblock %}

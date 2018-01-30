@@ -8,7 +8,6 @@ authorities_users = db.Table('authorities-users',
                              db.Column('user_id', db.Integer,
                                        db.ForeignKey('user.id'), primary_key=True))
 
-
 class Authority(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))
@@ -25,6 +24,31 @@ class User(db.Model, UserMixin):
     student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
     professor_id = db.Column(db.Integer, db.ForeignKey('professor.id'))
     posts = db.relationship('Post', backref='user', lazy='dynamic')
+    verify = db.Column(db.Boolean,nullable=False)
+
+    def isAdmin(self):
+        for auth in self.authorities:
+            if auth.name == "Admin":
+                return True
+        return False
+
+    def isStudent(self):
+        for auth in self.authorities:
+            if auth.name == "Student":
+                return True
+        return False
+
+    def isProfessor(self):
+        for auth in self.authorities:
+            if auth.name == "Professor":
+                return True
+        return False
+
+    def isHaveRole(self,role):
+        for auth in self.authorities:
+            if auth.name == role:
+                return True
+        return False
 
     @property
     def password(self):

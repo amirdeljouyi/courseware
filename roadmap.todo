@@ -1,0 +1,19 @@
+✔ roles @done (1/24/2018, 3:08:40 PM)
+✔ news @done (1/30/2018, 4:17:43 AM)
+    ✔ create // professor @done (1/30/2018, 4:17:45 AM)
+    ✔ update // both @done (1/30/2018, 4:17:47 AM)
+    ✔ delete // both @done (1/30/2018, 4:17:49 AM)
+✔ course @done (1/30/2018, 4:17:52 AM)
+    ✔ create @done (1/30/2018, 4:17:57 AM)
+    ✔ update @done (1/30/2018, 4:17:59 AM)
+    ✔ delete @done (1/30/2018, 4:18:01 AM)
+✔ users @done (1/30/2018, 4:18:03 AM)
+    ✔ create --inprogress @done (1/30/2018, 4:18:06 AM)
+    ✔ update --inprogress @done (1/24/2018, 10:16:45 PM)
+    ✔ delete @done (1/24/2018, 10:16:39 PM)
+    ☐ verify
+☐ async&await // news
+☐ extra
+    ✔ pagination @done (1/28/2018, 1:55:21 AM)
+    ✔ uploading --inprogress @done (1/28/2018, 1:55:26 AM)
+    ☐ slider // database
