@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from website import db, app, allowed_file
-from website.mod_course.models import Course, Term
+from website.mod_course.models import Course, Term , UploadedHomework
 from flask_login import login_required, current_user
 from website.mod_auth.models import User, Authority
 from flask import jsonify, json
@@ -177,3 +177,25 @@ def addNews(courseid):
             db.session.commit()
 
     return render_template('course/add-news.html',course=c)
+
+@mod_course.route('/<courseid>/upload-homework', methods=['GET', 'POST'])
+@login_required
+def uploadHomework(courseid):
+    stu = db.session.query(Authority).filter(
+        Authority.name == "Student").first()
+    course = db.session.query(Course).filter(Course.id == courseid).first()
+    if stu in current_user.authorities and course in current_user.student.course:
+        if request.method == "POST":
+            file = request.files['file']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['HOMEWORK_FOLDER'], filename))
+                u = UploadedHomework(
+                    url="filename",
+                    course=course,
+                    student=current_user.student
+                )
+                db.session.add(u)
+                db.session.commit()
+
+        return render_template('course/upload-homework.html', course=course, pageNum=4)

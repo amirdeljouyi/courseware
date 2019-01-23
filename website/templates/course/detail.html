@@ -9,9 +9,9 @@
             <a href="{{ url_for('course.addNews', courseid=course.id)}}">Add News</a>
         </li>
         {% endif %} {% if enroll %}
-        <!-- <li class="subnav-item {{'active' if subPageNum==2 }}">
-            <a href="#">Upload Homework</a>
-        </li> -->
+        <li class="subnav-item {{'active' if subPageNum==2 }}">
+            <a href="{{ url_for('course.uploadHomework', courseid=course.id)}}">Upload Homework</a>
+        </li>
         {% endif %}
     </ul>
 </nav>

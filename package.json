@@ -1,8 +1,8 @@
 {
-    "name": "internet-engineering",
+    "name": "courseware",
     "author": "Amir-Deljuyi",
     "version": "4.0.0",
-    "description": "Internet Engineering",
+    "description": "website for university have features like courseware , news , panel , admin",
     "private": true,
     "license": "MIT",
     "scripts": {

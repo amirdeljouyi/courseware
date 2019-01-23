@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block subnav %}
+<nav class="subnav">
+    <ul class="subnav-wrapper container container-fluid">
+        <li class="subnav-item">
+            <a href="{{ url_for('course.getCourse', courseid=course.id)}}">General</a>
+        </li>
+        <li class="subnav-item active">
+            <a href="{{ url_for('course.uploadHomework', courseid=course.id)}}">Upload Homework</a>
+        </li>
+    </ul>
+</nav>
+{% endblock %} {% block content %}
+
+<div class="mgn-subnav wrapper-md">
+    <div class="container-section container-section__primary">
+        <div class="fit-height__subnav col-xs center-xs middle-xs">
+            <form class="story" action="/course/{{course.id}}/upload-homework" method="POST" enctype="multipart/form-data">
+                <div class="upload-btn-wrapper mgn-b-2">
+                    <button class="upload-btn">Upload a Homework</button>
+                    <input type="file" name="file">
+                </div>
+                <button class="btn primary center" type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

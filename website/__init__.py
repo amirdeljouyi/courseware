@@ -11,6 +11,7 @@ POSTS_PER_PAGE = 6
 UPLOAD_FOLDER = '/run/media/amirdeljuyi/B6A4E8E5A4E8A8D7/Developing/Programming/Web Based/Internet Engineering/Internet Engineering-9312268118/website/static'
 IMG_FOLDER = '/img'
 VIDEO_FOLDER = '/video'
+HOMEWORK_FOLDER = '/homework'
 ALLOWED_EXTENSIONS = set(
     ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'webm', 'mp4', 'pdf'])
 
@@ -28,6 +29,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = \
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['IMG_FOLDER'] = UPLOAD_FOLDER + IMG_FOLDER
 app.config['VIDEO_FOLDER'] = UPLOAD_FOLDER + VIDEO_FOLDER
+app.config['HOMEWORK_FOLDER'] = UPLOAD_FOLDER + HOMEWORK_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 app.config['POSTS_PER_PAGE'] = POSTS_PER_PAGE
 app.debug = True
